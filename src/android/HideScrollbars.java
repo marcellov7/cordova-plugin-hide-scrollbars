@@ -20,7 +20,7 @@ public class HideScrollbars extends CordovaPlugin {
     private void hide(CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                WebView webView = (WebView) webView.getEngine().getView();
+                WebView webView = (WebView) webView;
                 webView.setVerticalScrollBarEnabled(false);
                 webView.setHorizontalScrollBarEnabled(false);
                 callbackContext.success();
