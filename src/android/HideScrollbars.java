@@ -2,6 +2,7 @@ package com.marcellov7;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.webkit.WebView;
@@ -20,10 +21,16 @@ public class HideScrollbars extends CordovaPlugin {
     private void hide(CallbackContext callbackContext) {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                WebView webView = (WebView) webView;
-                webView.setVerticalScrollBarEnabled(false);
-                webView.setHorizontalScrollBarEnabled(false);
-                callbackContext.success();
+                CordovaWebView cordovaWebView = webView;
+                View view = cordovaWebView.getView();
+                if (view instanceof WebView) {
+                    WebView webView = (WebView) view;
+                    webView.setVerticalScrollBarEnabled(false);
+                    webView.setHorizontalScrollBarEnabled(false);
+                    callbackContext.success();
+                } else {
+                    callbackContext.error("Unable to access WebView");
+                }
             }
         });
     }
