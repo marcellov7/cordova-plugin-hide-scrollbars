@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-hide-scrollbars" version="1.0.0">
+    <name>Hide Scrollbars</name>
+    <description>Cordova plugin to hide scrollbars on iOS and Android</description>
+    <license>MIT</license>
+    <keywords>cordova,scrollbars,hide</keywords>
+    <js-module src="www/hideScrollbars.js" name="hideScrollbars">
+        <clobbers target="cordova.plugins.hideScrollbars" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="HideScrollbars">
+                <param name="ios-package" value="HideScrollbars" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/HideScrollbars.m" />
+        <header-file src="src/ios/HideScrollbars.h" />
+    </platform>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="HideScrollbars">
+                <param name="android-package" value="com.marcellov7.HideScrollbars" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/HideScrollbars.java" target-dir="src/com/marcellov7" />
+    </platform>
+</plugin>
